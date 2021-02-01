@@ -6,17 +6,17 @@ const postRouter = Router();
 
 
 
-// get all users
+// get all posts
 postRouter.get("/posts", getAllPosts );
 
 
-// add a user * try catch and error feedback. 
+// add a post * try catch and error feedback. 
 postRouter.post("/posts",addPost); 
 
-// this is the route to update a user > find by ID
+// this is the route to update a post > find by ID
 postRouter.patch("/posts/:id",updatePostById);  
 
-// this is the route to delete a user > user is found by ID
+// this is the route to delete a post > user is found by ID
 postRouter.delete("/posts/:id", DeletePostById);
 
 // alternative VERY clean method below
