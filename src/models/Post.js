@@ -1,6 +1,4 @@
-const mongoose = require('mongoose')
-
-// blog challenge
+const mongoose = require('mongoose');
 const postSchema = new mongoose.Schema({
     // title, content, timestamps (createdAt & updatedAt).
     title: {
@@ -8,7 +6,7 @@ const postSchema = new mongoose.Schema({
         required: true,
     },
     content: {
-        type:String,
+        type: String,
         required: true,
     },
     author: {
@@ -19,6 +17,6 @@ const postSchema = new mongoose.Schema({
 {timestamps: true}
 );
 
-const Post = mongoose.model('post',postSchema)
+const Post = mongoose.model('Post', postSchema)
 
-// module.exports = { Post }
+module.exports = { Post };

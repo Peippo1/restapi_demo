@@ -1,32 +1,25 @@
-const {Router} = require('express');
 const {User} = require("../models/User");
-const userRouter = Router();
 
-
-
-
-const getAllUsers = async(req, res) => {
+exports.getAllUsers = async (req, res) => {
     try {
-        const allUsers = await User.find({})
-        res.status(200).send(allUsers);
+      const allUsers = await User.find({});
+      res.status(200).send(allUsers);
     } catch (error) {
-        res.status(500).send(error);
+      res.status(500).send(error);
     }
+  };
     // this will be the route to get users from the database
-    // return all users in an array
-    
-}
+    // return all users in an array.
 
-// add users function
-exports.addUser = async (req, res) =>{
+// add users function  // function for new user input
+exports.addUser = async (req, res) => {
     try{
         const user = new User(req.body);
         const savedUser = await user.save();
-        // function for new user input
         console.log(req.body);
         res.status(201).send(savedUser);
     } catch (error) {
-        res.status(500).send({message: "Could not connect"});
+        res.status(500).send({ message: "Could not connect" });
     }
 };
 
@@ -36,17 +29,15 @@ exports.updateUserById = async (req, res) => {
         console.log(user);
         res.status(200).send(user);
     } catch (error) {
-        res.status(404).send({message: "User not found"})
+        res.status(404).send({ message: "User not found" })
     }
-    // console.log(req.params);
 };
 
-// 
-exports.DeleteUserById = async (req, res) => {
+exports.deleteUser = async (req, res) => {
     try {
      const user = await User.findByIdAndDelete(req.params.id);
      res.status(200).send(user);
     } catch (error) {
-     res.status(404).send({message: "User not found"});
+     res.status(404).send({ message: "User not found" });
     }
  };

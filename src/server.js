@@ -1,14 +1,14 @@
 require('./db/connection');
 const express = require ("express");
-const cors = require |("cors");
+// const cors = require |("cors");
 const {userRouter} = require("./routes/user");
-const {postRouter} = require("./routes/post");
+const {postRouter} = require("./routes/posts");
 
 // use port given OR us./user port 5000 as below
 const port = process.env.PORT || 5000
 const app = express();
 
-app.use(cors());
+// app.use(cors());
 // use cors
 app.use(express.json());
 // json>javascript middleware
