@@ -1,13 +1,13 @@
 const {Router} = require('express');
 const {Post} = require("../models/Post");
-const {getAllPosts, addPost, updatePostById, DeletePostById} = require("../controllers/posts");
+const {getAllPosts, addPost, updatePostById, DeletePostById} = require("../controlers/posts");
 
 const postRouter = Router();
 
 
 
 // get all posts
-postRouter.get("/posts", getAllPosts );
+postRouter.get("/posts", getAllPosts);
 
 
 // add a post * try catch and error feedback. 

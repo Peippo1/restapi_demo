@@ -18,7 +18,7 @@ const getAllUsers = async(req, res) => {
 }
 
 // add users function
-exports.AddAllUsers = async (req, res) =>{
+exports.addUser = async (req, res) =>{
     try{
         const user = new User(req.body);
         const savedUser = await user.save();
