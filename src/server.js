@@ -1,6 +1,6 @@
 require('./db/connection');
 const express = require ("express");
-const cors = require |("cors");
+const cors = require ("cors");
 const {userRouter} = require("./routes/user");
 const {postRouter} = require("./routes/posts");
 
@@ -29,3 +29,4 @@ app.listen(port, () => {
 });
 // best practice for hosting ^^
 
+  

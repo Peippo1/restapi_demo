@@ -1,15 +1,22 @@
 const {User} = require("../models/User");
 
-exports.getAllUsers = async (req, res) => {
-    try {
-      const allUsers = await User.find({});
-      res.status(200).send(allUsers);
-    } catch (error) {
-      res.status(500).send(error);
-    }
-  };
+// exports.getAllUsers = async (req, res) => {
+//     try {
+//       const allUsers = await User.find({});
+//       res.status(200).send(allUsers);
+//     } catch (error) {
+//       res.status(500).send(error);
+//     }
+//   };
+
     // this will be the route to get users from the database
     // return all users in an array.
+
+// get your own profile 
+exports.getMyProfile = async (req, res) => {
+    res.status(200).send(req.user)
+}
+
 
 // add users function  // function for new user input
 exports.addUser = async (req, res) => {
@@ -57,3 +64,4 @@ exports.deleteUser = async (req, res) => {
      res.status(400).send({ message: "Unable to Login"});
  }
 };
+
