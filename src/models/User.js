@@ -1,4 +1,6 @@
 const mongoose = require ("mongoose")
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 
 const userSchema = new mongoose.Schema({
@@ -22,29 +24,47 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
 },
+
+  tokens: [ 
+    {
+      token: {
+        type: String,
+      },
+    },
+  ],
 },
 {timestamps: true}
 );
 
 // statics are to create part of the object(blueprint)
 userSchema.statics.findByCredentials = async (email, password) => {
-  mongoose.models.Users.findOne({email: ' '}, function(email) {console.log(email);})
-}
-// will the email or password work?
-const user = await User.findOne({email: email});
-if (!user) {
-  throw new Error ("Unable to log in")
-};
-const passwordMatch = await bcrypt.compare(password, userPassword);
-if (!passwordMatch) {
-  throw new Error ("Unable to log in")
+  const user = await User.findOne({ email });
+  if (!user) {
+    throw new Error("Unable to login");
+  }
+
+  const passwordsMatch = await bcrypt.compare(password, user.password);
+  if (!passwordsMatch) {
+    throw new Error("Unable to login");
+  }
+
+  return user;
 };
 
-return user;
+
+
+
+userSchema.methods.generateAuthToken = async function () {
+  const token = jwt.sign({_id: this._id}, process.env.SECRET, {expiresIn: "5 weeks"});
+  this.tokens.push({ token });
+  return token;
+};
 
 
 
 const User = mongoose.model("User", userSchema);
 
 
-module.exports = {User,};
+module.exports = {
+  User,
+};

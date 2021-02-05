@@ -8,7 +8,7 @@ const myFunction = async () =>  {
     console.log(hashedPassword);
 
     // compares password
-    const passwordMatch = await bcrypt.compare ("any string",hashedPassword)
+    const passwordMatch = await bcrypt.compare ("any string",hashedPassword);
     console.log(passwordMatch);
 };
 

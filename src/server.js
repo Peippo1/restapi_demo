@@ -1,6 +1,6 @@
 require('./db/connection');
 const express = require ("express");
-// const cors = require |("cors");
+const cors = require |("cors");
 const {userRouter} = require("./routes/user");
 const {postRouter} = require("./routes/posts");
 
@@ -8,14 +8,14 @@ const {postRouter} = require("./routes/posts");
 const port = process.env.PORT || 5000
 const app = express();
 
-// app.use(cors());
+app.use(cors());
 // use cors
 app.use(express.json());
 // json>javascript middleware
 app.use(userRouter);
-// user rout from routes file
+// user route from routes file
 app.use(postRouter);
-// port rout from routes file
+// port route from routes file
 
 
 app.get("/health", (req, res) => {
